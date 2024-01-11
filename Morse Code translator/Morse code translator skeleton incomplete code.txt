@@ -1,0 +1,50 @@
+# Import necessary libraries
+import wave
+import docx
+
+# Define Morse Code dictionary
+MORSE_CODE_DICT = {'A':'.-', 'B':'-...',
+                    'C':'-.-.', 'D':'-..', 'E':'.',
+                    'F':'..-.', 'G':'--.', 'H':'....',
+                    'I':'..', 'J':'.---', 'K':'-.-',
+                    'L':'.-..', 'M':'--', 'N':'-.',
+                    'O':'---', 'P':'.--.', 'Q':'--.-',
+                    'R':'.-.', 'S':'...', 'T':'-',
+                    'U':'..-', 'V':'...-', 'W':'.--',
+                    'X':'-..-', 'Y':'-.--', 'Z':'--..',
+                    '1':'.----', '2':'..---', '3':'...--',
+                    '4':'....-', '5':'.....', '6':'-....',
+                    '7':'--...', '8':'---..', '9':'----.',
+                    '0':'-----'}
+
+# Function to convert Morse code to text
+def morse_to_text(morse_code):
+    words = morse_code.split(" / ")
+    decoded_words = []
+    for word in words:
+        letters = word.split(" ")
+        decoded_word = "".join(MORSE_CODE_DICT.get(letter.upper()) for letter in letters)
+        decoded_words.append(decoded_word)
+    return " ".join(decoded_words)
+
+# Function to process audio file and convert to Morse code
+def audio_to_morse(audio_file):
+    # This is a placeholder. Actual implementation would involve
+    # processing the audio file and converting it to Morse code.
+    pass
+
+# Function to save text to Word document
+def save_to_word(text, filename):
+    doc = docx.Document()
+    doc.add_paragraph(text)
+    doc.save(filename)
+
+# Main function
+def main():
+    audio_file = "path_to_your_audio_file.wav"
+    morse_code = audio_to_morse(audio_file)
+    text = morse_to_text(morse_code)
+    save_to_word(text, "output.docx")
+
+if __name__ == "__main__":
+    main()
